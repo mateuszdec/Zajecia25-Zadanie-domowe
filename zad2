@@ -112,6 +112,11 @@ VALUES ('Norwida 24', '50-302','Wrocław'),
 
 -- 13. Pobiera pełne informacje o pracowniku (imię, nazwisko, adres, stanowisko)
 
+SELECT pracownik.imie, pracownik.nazwisko,
+		stanowisko.nazwa_stanowiska, stanowisko.opis, stanowisko.wyplata,
+        adres.ulica_numer_domu, adres.kod_pocztowy, adres.miejscowość
+        FROM pracownik, stanowisko, adres;
+
 
 -- 14. Oblicza sumę wypłat dla wszystkich pracowników w firmie
 
