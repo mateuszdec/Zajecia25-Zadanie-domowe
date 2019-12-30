@@ -10,6 +10,19 @@ stanowisko VARCHAR(200));
 
 
 2. Wstawia do tabeli co najmniej 6 pracowników
+
+INSERT INTO pracownik(imie, nazwisko, wyplata, data_urodzenia, stanowisko)
+VALUES ('Adam', 'Kowalski', 5000, '1990-12-12', 'Księgowy'),
+		('Karolina', 'Nowak', 3000, '1992-02-23', 'Junior Java Developer'),
+		('Mateusz', 'Adamski', 8000, '1988-03-12', 'Tester'),
+		('Natalia', 'Porankiewicz', 5000, '1993-05-26', 'Java Developer'),
+		('Jarosław', 'Kaczyński', 12000, '1990-01-12', 'Prezes'),
+		('Mieczysław', 'Matysiak', 4000, '1970-12-16', 'Security'),
+		('Adam', 'Kowalski', 5000, '1989-04-12', 'Manager'),
+		('Paulina', 'Puchcik', 4800, '1998-03-25', 'Sekretarka');
+
+
+
 3. Pobiera wszystkich pracowników i wyświetla ich w kolejności alfabetycznej po nazwisku
 4. Pobiera pracowników na wybranym stanowisku
 5. Pobiera pracowników, którzy mają co najmniej 30 lat
