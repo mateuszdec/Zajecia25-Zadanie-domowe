@@ -1,0 +1,40 @@
+1. Pobierz zatrudnionych w roku 1990 i później
+
+
+2.Ile kobiet pracowało do tej pory w firmie?
+
+SELECT SUM(gender = 'F')
+FROM employees;
+
+
+3. Pobierz imię, nazwisko oraz nazwę działu pracownika
+
+
+
+
+4.Wyświetl imię, nazwisko i datę urodzenia najmłodszej kobiety
+
+SELECT first_name, last_name, hire_date, gender
+FROM employees
+
+WHERE hire_date=(SELECT MIN(hire_date) FROM employees) AND gender = 'F';
+
+
+
+5. Wyświetl pracownika o numerze 10009 z wszystkimi dotychczasowymi stanowiskami pracy
+
+SELECT dept_name
+FROM departments
+
+JOIN dept_emp ON emp_no = 10009;
+
+
+6. Wyświetl pracowników z aktualnymi stanowiskami pracy
+
+7. Wyświetl najlepiej zarabiającego pracownika
+
+8. Wyświetl najlepiej i najgorzej zarabiających pracowników
+
+9. Wyświetl imię i nazwisko pracownika oraz imię i nazwisko managera jego działu
+
+10. Wyświetl wszystkie stanowiska w firmie. Usuń powtórzenia.
