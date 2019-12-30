@@ -22,16 +22,17 @@ VALUES ('Adam', 'Kowalski', 5000, '1990-12-12', 'Księgowy'),
 		('Paulina', 'Puchcik', 4800, '1998-03-25', 'Sekretarka');
 
 
-
 -- 3. Pobiera wszystkich pracowników i wyświetla ich w kolejności alfabetycznej po nazwisku
 
 SELECT * FROM pracownik
 ORDER BY nazwisko;
 
+
 -- 4. Pobiera pracowników na wybranym stanowisku
 
 SELECT * FROM pracownik
 WHERE stanowisko = 'Tester';
+
 
 -- 5. Pobiera pracowników, którzy mają co najmniej 30 lat
 
@@ -43,10 +44,12 @@ SELECT imie, nazwisko, wyplata + (wyplata*0.1), data_urodzenia, stanowisko
 FROM pracownik
 WHERE stanowisko = 'Tester';
 
+
 -- 7. Usuwa najmłodszego pracownika
 -- 8. Usuwa tabelę pracownik
 
 DROP TABLE pracownik;
+
 
 -- 9. Tworzy tabelę stanowisko (nazwa stanowiska, opis, wypłata na danym stanowisku)
 
@@ -56,9 +59,63 @@ nazwa_stanowiska VARCHAR(50) NOT NULL,
 opis VARCHAR(50) NOT NULL,
 wyplata DECIMAL(10,2));
 
+
 -- 10. Tworzy tabelę adres (ulica+numer domu/mieszkania, kod pocztowy, miejscowość)
+
+CREATE TABLE adres
+(id INT auto_increment PRIMARY KEY,
+ulica_numer_domu VARCHAR(50) NOT NULL,
+kod_pocztowy VARCHAR(50) NOT NULL,
+miejscowość VARCHAR(50) NOT NULL);
+
+
 -- 11. Tworzy tabelę pracownik (imię, nazwisko) + relacje do tabeli stanowisko i adres
+
+CREATE TABLE pracownik
+(id INT auto_increment PRIMARY KEY,
+imie VARCHAR(50) NOT NULL,
+nazwisko VARCHAR(50) NOT NULL);
+
+
 -- 12. Dodaje dane testowe (w taki sposób, aby powstały pomiędzy nimi sensowne powiązania)
+
+INSERT INTO pracownik(imie, nazwisko)
+VALUES ('Adam', 'Kowalski'),
+		('Karolina', 'Nowak'),
+		('Mateusz', 'Adamski'),
+		('Natalia', 'Porankiewicz'),
+		('Jarosław', 'Kaczyński'),
+		('Mieczysław', 'Matysiak'),
+		('Adam', 'Kowalski'),
+		('Paulina', 'Puchcik');
+
+INSERT INTO stanowisko(nazwa_stanowiska, opis, wyplata)
+VALUES ('Księgowy', 'Papierkowa robota', 5000),
+		('Junior Java Developer', 'Klepacz kodu', 3000),
+		('Tester', 'Testooowanie', 8000),
+		('Java Developer', 'Klepacz kodu', 15000),
+		('Prezes', 'Kontakt z klientem', 12000),
+		('Security', 'Ochronia', 4000),
+		('Manager', 'Kontakt z klientem', 5000),
+		('Sekretarka', 'Papierkowa robota', 4800);
+
+INSERT INTO adres (ulica_numer_domu, kod_pocztowy, miejscowość)
+VALUES ('Norwida 24', '50-302','Wrocław'),
+		('Jedności Narodowej 120','50-300','Wrocław'),
+        ('Sienkiewicza 27','50-320','Wrocław'),
+        ('Mickiewicza 40','48-620','Kraków'),
+        ('Kościuszki 120','48-150','Kraków'),
+        ('Obornicka 51','50-240','Wrocław'),
+        ('Fabryczna 36','50-520','Wrocław'),
+        ('Grunwaldzka 27','50-420','Wrocław');
+
+
 -- 13. Pobiera pełne informacje o pracowniku (imię, nazwisko, adres, stanowisko)
+
+
 -- 14. Oblicza sumę wypłat dla wszystkich pracowników w firmie
+
+SELECT SUM(wyplata) FROM stanowisko;
+
+
 -- 15. Pobiera pracowników mieszkających w lokalizacji z kodem pocztowym 90210 (albo innym, który będzie miał sens dla Twoich danych testowych)
