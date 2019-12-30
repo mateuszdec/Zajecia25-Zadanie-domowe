@@ -24,7 +24,15 @@ VALUES ('Adam', 'Kowalski', 5000, '1990-12-12', 'Księgowy'),
 
 
 3. Pobiera wszystkich pracowników i wyświetla ich w kolejności alfabetycznej po nazwisku
+
+SELECT * FROM pracownik
+ORDER BY nazwisko;
+
 4. Pobiera pracowników na wybranym stanowisku
+
+SELECT * FROM pracownik
+WHERE stanowisko = 'Tester';
+
 5. Pobiera pracowników, którzy mają co najmniej 30 lat
 6. Zwiększa wypłatę pracowników na wybranym stanowisku o 10%
 7. Usuwa najmłodszego pracownika
