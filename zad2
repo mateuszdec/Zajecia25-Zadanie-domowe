@@ -35,6 +35,11 @@ WHERE stanowisko = 'Tester';
 
 5. Pobiera pracowników, którzy mają co najmniej 30 lat
 6. Zwiększa wypłatę pracowników na wybranym stanowisku o 10%
+
+SELECT imie, nazwisko, wyplata + (wyplata*0.1), data_urodzenia, stanowisko
+FROM pracownik
+WHERE stanowisko = 'Tester'; 
+
 7. Usuwa najmłodszego pracownika
 8. Usuwa tabelę pracownik
 9. Tworzy tabelę stanowisko (nazwa stanowiska, opis, wypłata na danym stanowisku)
