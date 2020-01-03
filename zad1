@@ -1,32 +1,31 @@
 1. Pobierz zatrudnionych w roku 1990 i później
+SELECT * FROM employees
+WHERE hire_date
+BETWEEN '1990-01-01' AND NOW();
 
 
 2.Ile kobiet pracowało do tej pory w firmie?
-
 SELECT SUM(gender = 'F')
 FROM employees;
 
 
 3. Pobierz imię, nazwisko oraz nazwę działu pracownika
-
-
+SELECT e.first_name, e.last_name, d.dept_name
+FROM employees e
+JOIN dept_emp de ON e.emp_no = de.emp_no
+JOIN departments d ON de.dept_no = d.dept_no;
 
 
 4.Wyświetl imię, nazwisko i datę urodzenia najmłodszej kobiety
-
 SELECT first_name, last_name, hire_date, gender
 FROM employees
-
 WHERE hire_date=(SELECT MIN(hire_date) FROM employees) AND gender = 'F';
 
 
-
 5. Wyświetl pracownika o numerze 10009 z wszystkimi dotychczasowymi stanowiskami pracy
-
-SELECT dept_name
-FROM departments
-
-JOIN dept_emp ON emp_no = 10009;
+SELECT first_name, last_name, title
+FROM employees, titles
+WHERE employees.emp_no = titles.emp_no AND titles.emp_no = 10009;
 
 
 6. Wyświetl pracowników z aktualnymi stanowiskami pracy
