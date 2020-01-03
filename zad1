@@ -29,6 +29,10 @@ WHERE employees.emp_no = titles.emp_no AND titles.emp_no = 10009;
 
 
 6. Wyświetl pracowników z aktualnymi stanowiskami pracy
+SELECT * FROM employees, titles
+WHERE employees.emp_no = titles.emp_no
+AND titles.to_date > NOW();
+
 
 7. Wyświetl najlepiej zarabiającego pracownika
 
@@ -37,3 +41,5 @@ WHERE employees.emp_no = titles.emp_no AND titles.emp_no = 10009;
 9. Wyświetl imię i nazwisko pracownika oraz imię i nazwisko managera jego działu
 
 10. Wyświetl wszystkie stanowiska w firmie. Usuń powtórzenia.
+SELECT DISTINCT title
+FROM titles;
