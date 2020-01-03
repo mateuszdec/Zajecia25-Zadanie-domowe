@@ -35,8 +35,21 @@ AND titles.to_date > NOW();
 
 
 7. Wyświetl najlepiej zarabiającego pracownika
+SELECT first_name, last_name, salary
+FROM employees
+JOIN salaries ON employees.emp_no = salaries.emp_no
+WHERE to_date > NOW()
+AND salary=(SELECT MAX(salary) FROM salaries);
+
 
 8. Wyświetl najlepiej i najgorzej zarabiających pracowników
+SELECT first_name, last_name, salary
+FROM employees
+JOIN salaries ON employees.emp_no = salaries.emp_no
+WHERE to_date > NOW()
+AND salary=(SELECT MAX(salary) FROM salaries)
+OR salary=(SELECT MIN(salary) FROM salaries);
+
 
 9. Wyświetl imię i nazwisko pracownika oraz imię i nazwisko managera jego działu
 
