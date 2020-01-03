@@ -1,5 +1,4 @@
 -- 1. Tworzy tabelę pracownik(imie, nazwisko, wyplata, data urodzenia, stanowisko). W tabeli mogą być dodatkowe kolumny, które uznasz za niezbędne.
-
 CREATE TABLE pracownik
 (id INT auto_increment PRIMARY KEY,
 imie VARCHAR(50) NOT NULL,
@@ -10,7 +9,6 @@ stanowisko VARCHAR(200));
 
 
 -- 2. Wstawia do tabeli co najmniej 6 pracowników
-
 INSERT INTO pracownik(imie, nazwisko, wyplata, data_urodzenia, stanowisko)
 VALUES ('Adam', 'Kowalski', 5000, '1990-12-12', 'Księgowy'),
 		('Karolina', 'Nowak', 3000, '1992-02-23', 'Junior Java Developer'),
@@ -23,13 +21,11 @@ VALUES ('Adam', 'Kowalski', 5000, '1990-12-12', 'Księgowy'),
 
 
 -- 3. Pobiera wszystkich pracowników i wyświetla ich w kolejności alfabetycznej po nazwisku
-
 SELECT * FROM pracownik
 ORDER BY nazwisko;
 
 
 -- 4. Pobiera pracowników na wybranym stanowisku
-
 SELECT * FROM pracownik
 WHERE stanowisko = 'Tester';
 
@@ -39,20 +35,19 @@ WHERE stanowisko = 'Tester';
 
 
 -- 6. Zwiększa wypłatę pracowników na wybranym stanowisku o 10%
-
 SELECT imie, nazwisko, wyplata + (wyplata*0.1), data_urodzenia, stanowisko
 FROM pracownik
 WHERE stanowisko = 'Tester';
 
 
 -- 7. Usuwa najmłodszego pracownika
--- 8. Usuwa tabelę pracownik
 
+
+-- 8. Usuwa tabelę pracownik
 DROP TABLE pracownik;
 
 
 -- 9. Tworzy tabelę stanowisko (nazwa stanowiska, opis, wypłata na danym stanowisku)
-
 CREATE TABLE stanowisko
 (id INT auto_increment PRIMARY KEY,
 nazwa_stanowiska VARCHAR(50) NOT NULL,
@@ -61,7 +56,6 @@ wyplata DECIMAL(10,2));
 
 
 -- 10. Tworzy tabelę adres (ulica+numer domu/mieszkania, kod pocztowy, miejscowość)
-
 CREATE TABLE adres
 (id INT auto_increment PRIMARY KEY,
 ulica_numer_domu VARCHAR(50) NOT NULL,
@@ -70,7 +64,6 @@ miejscowość VARCHAR(50) NOT NULL);
 
 
 -- 11. Tworzy tabelę pracownik (imię, nazwisko) + relacje do tabeli stanowisko i adres
-
 CREATE TABLE pracownik
 (id INT auto_increment PRIMARY KEY,
 imie VARCHAR(50) NOT NULL,
@@ -78,7 +71,6 @@ nazwisko VARCHAR(50) NOT NULL);
 
 
 -- 12. Dodaje dane testowe (w taki sposób, aby powstały pomiędzy nimi sensowne powiązania)
-
 INSERT INTO pracownik(imie, nazwisko)
 VALUES ('Adam', 'Kowalski'),
 		('Karolina', 'Nowak'),
@@ -111,7 +103,6 @@ VALUES ('Norwida 24', '50-302','Wrocław'),
 
 
 -- 13. Pobiera pełne informacje o pracowniku (imię, nazwisko, adres, stanowisko)
-
 SELECT pracownik.imie, pracownik.nazwisko,
 		stanowisko.nazwa_stanowiska, stanowisko.opis, stanowisko.wyplata,
         adres.ulica_numer_domu, adres.kod_pocztowy, adres.miejscowość
@@ -119,8 +110,12 @@ SELECT pracownik.imie, pracownik.nazwisko,
 
 
 -- 14. Oblicza sumę wypłat dla wszystkich pracowników w firmie
-
 SELECT SUM(wyplata) FROM stanowisko;
 
 
 -- 15. Pobiera pracowników mieszkających w lokalizacji z kodem pocztowym 90210 (albo innym, który będzie miał sens dla Twoich danych testowych)
+SELECT imie, nazwisko, ulica_numer_domu, kod_pocztowy, miejscowość, nazwa_stanowiska
+FROM pracownik p
+INNER JOIN adres a ON p.id=a.id
+INNER JOIN stanowisko s ON p.id=s.id
+WHERE kod_pocztowy='50-420';
